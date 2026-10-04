@@ -12,10 +12,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.14.4</junit.version>
     <project.build.outputTimestamp>2026-09-27T00:00:00Z</project.build.outputTimestamp>
+    <cyclonedx.version>2.9.3</cyclonedx.version>
   </properties>
 
   <dependencies>
-    <!-- The application dependency required by App.java is intentionally missing. -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -63,6 +63,23 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.5</version>
+      </plugin>
+      <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+        <version>${cyclonedx.version}</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>makeAggregateBom</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <outputFormat>json</outputFormat>
+          <outputName>bom</outputName>
+        </configuration>
       </plugin>
     </plugins>
   </build>

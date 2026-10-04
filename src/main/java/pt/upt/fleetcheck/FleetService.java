@@ -6,8 +6,7 @@ public class FleetService {
 
     public boolean needsService(Vehicle vehicle) {
         int kilometresSinceService = vehicle.mileageKm() - vehicle.lastServiceKm();
-        // Intentionally contains a boundary defect for the lab.
-        return kilometresSinceService > vehicle.serviceIntervalKm();
+        return kilometresSinceService >= vehicle.serviceIntervalKm();
     }
 
     public long countVehiclesNeedingService(List<Vehicle> vehicles) {
